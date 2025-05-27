@@ -1,8 +1,69 @@
 # Stock Drawdown Analysis Tool
 
-A Python tool for analyzing and visualizing historical drawdowns of stocks and indices. The tool calculates maximum drawdowns across different time frequencies (daily, monthly, quarterly) and generates both standard and flipped visualizations.
+A Python tool for analyzing and visualizing historical drawdowns of stocks and indices. Track the peak-to-trough declines of any publicly traded stock or index.
 
-## Beginner's Installation Guide
+## What is a Drawdown?
+
+A drawdown shows how much an investment is down from its peak value. For example:
+- If a stock reaches $100, then falls to $80, it has a -20% drawdown
+- If it then rises to $90 and falls to $70, it has a -30% drawdown from its $100 peak
+
+Example Drawdown Chart for Apple (AAPL):
+
+![Apple Stock Drawdown Example](assets/example_drawdown.png)
+
+## What This Tool Provides
+
+For any stock symbol (e.g., AAPL, MSFT, ^GSPC), you get:
+
+1. **Data Files** (CSV format):
+   - Historical drawdown percentages
+   - Dates of all drawdowns
+   - Easy to open in Excel/Google Sheets
+
+2. **Visualization** (Two views):
+   - Standard View: Drawdowns shown as negative percentages
+   - Flipped View: Drawdowns shown as positive percentages (useful for comparing with other metrics)
+
+3. **Multiple Timeframes**:
+   - Daily drawdowns (most detailed)
+   - Monthly drawdowns (smoother view)
+   - Quarterly drawdowns (long-term perspective)
+
+Example Output Structure:
+```
+drawdowns/
+└── AAPL/
+    ├── daily/
+    │   ├── drawdown_data.csv
+    │   ├── drawdown_standard.png
+    │   └── drawdown_flipped.png
+    ├── monthly/
+    │   └── [same files]
+    └── quarterly/
+        └── [same files]
+```
+
+## Quick Start (For Experienced Users)
+
+```bash
+git clone https://github.com/finnjclancy/drawdowns.git
+cd drawdowns
+pip install -r requirements.txt
+python drawdown.py AAPL
+```
+
+## Common Stock Symbols
+
+- Apple: AAPL
+- Microsoft: MSFT
+- Google: GOOGL
+- Amazon: AMZN
+- S&P 500 Index: ^GSPC
+- Tesla: TSLA
+- Netflix: NFLX
+
+## Detailed Installation Guide
 
 ### For macOS Users
 
@@ -68,65 +129,34 @@ A Python tool for analyzing and visualizing historical drawdowns of stocks and i
      ```
    - Wait for the installation to complete
 
-## How to Use the Tool
+## How to Use
 
-### Basic Usage (For Beginners)
+### Basic Usage
 
 1. **Start the program**:
-   - If you're on macOS (in Terminal) or Windows (in Command Prompt), type:
-     ```bash
-     python drawdown.py
-     ```
-   - Press Enter
+   ```bash
+   python drawdown.py
+   ```
 
-2. **Enter a stock symbol**:
-   - Type a stock symbol when asked (for example: AAPL for Apple, MSFT for Microsoft, GOOGL for Google)
-   - Press Enter
-   - The program will create files in a new 'drawdowns' folder
+2. **Enter a stock symbol** when prompted (e.g., AAPL, MSFT, ^GSPC)
 
-3. **Find your results**:
-   - Look for a new folder called 'drawdowns' in your File Explorer/Finder
-   - Inside, you'll find folders named after the stocks you analyzed
-   - Each stock folder contains:
-     - Daily analysis
-     - Monthly analysis
-     - Quarterly analysis
-   - Each analysis includes:
-     - A CSV file (can be opened in Excel)
-     - Two PNG image files showing the drawdown graphs
+3. **Find your results** in the 'drawdowns' folder:
+   - CSV files for data analysis
+   - PNG files for visual analysis
 
 ### Advanced Usage
 
-Once you're comfortable with the basic usage, you can try these advanced commands:
+1. Analyze multiple stocks at once:
+   ```bash
+   python drawdown.py AAPL MSFT SPY
+   ```
 
-1. Analyze a single stock directly:
-```bash
-python drawdown.py AAPL
-```
-
-2. Analyze multiple stocks at once:
-```bash
-python drawdown.py AAPL MSFT SPY
-```
-
-3. Choose specific time periods:
-```bash
-python drawdown.py AAPL -f daily monthly
-```
-
-## Common Stock Symbols
-
-- Apple: AAPL
-- Microsoft: MSFT
-- Google: GOOGL
-- Amazon: AMZN
-- S&P 500 Index: ^GSPC
-- Tesla: TSLA
-- Netflix: NFLX
+2. Choose specific time periods:
+   ```bash
+   python drawdown.py AAPL -f daily monthly
+   ```
 
 ## Troubleshooting
-
-### Common Issues and Solutions
 
 1. **"Python not found" error**:
    - macOS: Reinstall Python from python.org
@@ -137,10 +167,7 @@ python drawdown.py AAPL -f daily monthly
    - Windows: Install Git using the instructions at https://git-scm.com/download/win
 
 3. **"No module named..." error**:
-   - Run this command again:
-     ```bash
-     pip install -r requirements.txt
-     ```
+   - Run: `pip install -r requirements.txt`
 
 4. **"Invalid ticker symbol" error**:
    - Make sure you're using the correct stock symbol
@@ -148,16 +175,9 @@ python drawdown.py AAPL -f daily monthly
 
 Need more help? Feel free to open an issue on GitHub!
 
-## Dependencies
+## Technical Details
 
-- yfinance: Gets stock market data
-- pandas: Handles data processing
-- matplotlib: Creates the graphs
-- Python 3.x: The programming language used
-
-## Notes
-
-- Data comes from Yahoo Finance
-- Different stocks have different amounts of historical data available
-- Some special symbols need specific formatting (like ^GSPC for the S&P 500)
+- Data Source: Yahoo Finance (via yfinance package)
+- Dependencies: pandas, matplotlib, yfinance
+- Python Version: 3.x required
 
